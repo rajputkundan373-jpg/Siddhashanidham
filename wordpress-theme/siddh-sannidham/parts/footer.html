@@ -1,0 +1,75 @@
+<!-- wp:html -->
+<footer class="ss-footer">
+  <div class="divider-gold"></div>
+  <div class="ss-container ss-footer-grid">
+    <div>
+      <div class="ss-logo-text-hi" style="font-size:22px">सिद्ध सन्निधम्</div>
+      <div class="ss-logo-text-en" style="margin-top:4px">SIDDH SANNIDHAM</div>
+      <p class="font-mantra text-gold-light" style="margin-top:20px;line-height:1.9;font-size:14px">श्री शनिदेव की कृपा एवं आशीर्वाद</p>
+      <p class="text-muted-ivory" style="font-size:14px;line-height:1.7;margin-top:12px">
+        <span data-hi="इटावा-ग्वालियर मार्ग पर स्थित एक पावन शनि धाम — दर्शन, सेवा एवं भक्ति का सिद्ध स्थान।"
+              data-en="A sacred Shani Dham on Etawa–Gwalior Road — a place of darshan, seva and unwavering devotion.">इटावा-ग्वालियर मार्ग पर स्थित एक पावन शनि धाम — दर्शन, सेवा एवं भक्ति का सिद्ध स्थान।</span>
+      </p>
+    </div>
+    <div>
+      <h4 data-hi="त्वरित लिंक" data-en="Quick Links">त्वरित लिंक</h4>
+      <ul>
+        <li><a href="/darshan" data-hi="दर्शन" data-en="Darshan">दर्शन</a></li>
+        <li><a href="/live-aarti" data-hi="लाइव आरती" data-en="Live Aarti">लाइव आरती</a></li>
+        <li><a href="/seva" data-hi="सेवा" data-en="Seva">सेवा</a></li>
+        <li><a href="/donate" data-hi="दान" data-en="Donate">दान</a></li>
+        <li><a href="/bhandara" data-hi="भंडारा" data-en="Bhandara">भंडारा</a></li>
+        <li><a href="/events" data-hi="आयोजन" data-en="Events">आयोजन</a></li>
+        <li><a href="/journal" data-hi="जर्नल" data-en="Journal">जर्नल</a></li>
+        <li><a href="/gallery" data-hi="गैलरी" data-en="Gallery">गैलरी</a></li>
+        <li><a href="/visit-us" data-hi="यात्रा" data-en="Visit Us">यात्रा</a></li>
+        <li><a href="/contact" data-hi="संपर्क" data-en="Contact">संपर्क</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-hi="संपर्क" data-en="Reach Us">संपर्क</h4>
+      <ul style="font-size:14px">
+        <li><span class="text-muted-ivory" data-hi="इटावा-ग्वालियर मार्ग, मध्य प्रदेश" data-en="Etawa–Gwalior Road, Madhya Pradesh">इटावा-ग्वालियर मार्ग, मध्य प्रदेश</span></li>
+        <li style="margin-top:8px"><?php echo esc_html( siddh_get_option( 'phone', '' ) ?: '—' ); ?></li>
+        <li style="margin-top:8px"><?php echo esc_html( siddh_get_option( 'email', '' ) ?: '—' ); ?></li>
+      </ul>
+      <div class="socials">
+        <?php
+        $socials = array( 'youtube', 'instagram', 'facebook', 'whatsapp' );
+        foreach ( $socials as $s ) {
+            $url = siddh_get_option( $s . '_url', '' );
+            if ( $url ) printf( '<a href="%s" target="_blank" rel="noopener" aria-label="%s">%s</a>', esc_url( $url ), esc_attr( $s ), esc_html( ucfirst( $s ) ) );
+        }
+        ?>
+      </div>
+    </div>
+    <div>
+      <h4 data-hi="समाचार पत्रिका" data-en="Newsletter">समाचार पत्रिका</h4>
+      <p class="text-muted-ivory" style="font-size:14px;line-height:1.7" data-hi="मंदिर की सूचनाएँ, आयोजन एवं आध्यात्मिक लेख प्राप्त करें।" data-en="Receive temple updates, events and spiritual articles.">मंदिर की सूचनाएँ, आयोजन एवं आध्यात्मिक लेख प्राप्त करें।</p>
+      <form data-ss-form="newsletter" style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
+        <input class="ss-input" type="email" name="email" required placeholder="आपका ईमेल / Your email">
+        <button class="btn-primary-gold" type="submit"><span data-hi="जुड़ें" data-en="Subscribe">जुड़ें</span></button>
+        <span data-ss-form-msg style="font-size:12px;color:#B0B7C3"></span>
+      </form>
+    </div>
+  </div>
+  <div class="ss-container ss-footer-bottom">
+    <div>© <?php echo esc_html( date( 'Y' ) ); ?> Siddh Sannidham. <span data-hi="सर्वाधिकार सुरक्षित।" data-en="All Rights Reserved.">सर्वाधिकार सुरक्षित।</span></div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap">
+      <a href="/privacy" data-hi="गोपनीयता नीति" data-en="Privacy Policy">गोपनीयता नीति</a>
+      <a href="/terms" data-hi="शर्तें" data-en="Terms">शर्तें</a>
+      <a href="/donation-policy" data-hi="दान नीति" data-en="Donation Policy">दान नीति</a>
+      <a href="/disclaimer" data-hi="अस्वीकरण" data-en="Disclaimer">अस्वीकरण</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky mobile action bar -->
+<div class="mobile-actions" aria-label="Quick actions">
+  <a href="/live-aarti"><span class="live-dot"></span><span data-hi="लाइव" data-en="Live">लाइव</span></a>
+  <a href="/donate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span data-hi="दान" data-en="Donate">दान</span></a>
+  <a href="/seva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-8 11-8 11z"/></svg><span data-hi="सेवा" data-en="Seva">सेवा</span></a>
+  <a href="<?php echo esc_url( siddh_get_option( 'maps_url', 'https://maps.google.com/?q=Etawa+Gwalior+Road+Madhya+Pradesh' ) ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-hi="मार्ग" data-en="Directions">मार्ग</span></a>
+  <a href="<?php echo esc_url( 'https://wa.me/' . preg_replace( '/\D/', '', siddh_get_option( 'whatsapp', '' ) ) ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>WhatsApp</a>
+</div>
+<!-- /wp:html -->

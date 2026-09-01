@@ -1,0 +1,24 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained","contentSize":"1200px"},"style":{"spacing":{"padding":{"top":"96px","bottom":"64px","left":"24px","right":"24px"}}}} -->
+<main class="wp-block-group">
+  <!-- wp:query-title {"type":"archive","style":{"typography":{"fontFamily":"'Cinzel', serif"}}} /-->
+  <!-- wp:separator {"className":"gold-underline"} --><hr class="wp-block-separator gold-underline"/><!-- /wp:separator -->
+  <!-- wp:query {"queryId":10,"query":{"inherit":true,"perPage":9}} -->
+  <div class="wp-block-query">
+    <!-- wp:post-template -->
+      <!-- wp:group {"className":"card-sacred"} -->
+      <div class="wp-block-group card-sacred">
+        <!-- wp:post-featured-image {"isLink":true} /-->
+        <!-- wp:post-title {"isLink":true,"level":3} /-->
+        <!-- wp:post-excerpt /-->
+      </div>
+      <!-- /wp:group -->
+    <!-- /wp:post-template -->
+    <!-- wp:query-pagination --><!-- wp:query-pagination-previous /--><!-- wp:query-pagination-numbers /--><!-- wp:query-pagination-next /--><!-- /wp:query-pagination -->
+  </div>
+  <!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

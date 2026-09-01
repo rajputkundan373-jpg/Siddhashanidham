@@ -1,0 +1,165 @@
+/*
+Theme Name: Siddh Sannidham
+Theme URI: https://siddhashanidham.com/
+Author: Siddh Sannidham
+Description: Native WordPress block theme for Siddh Sannidham — Shani Dev Temple. Deep charcoal + antique gold sacred aesthetic with Hindi-first bilingual typography. Full Site Editor compatible.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.5
+Requires PHP: 7.4
+License: GPL-2.0-or-later
+Text Domain: siddh-sannidham
+Tags: block-theme, full-site-editing, one-column, custom-colors, custom-menu, editor-style, translation-ready
+*/
+
+/* ─────────── Google Fonts (single import) ─────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Rozha+One&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
+
+/* ─────────── Base ─────────── */
+:root{
+  --ss-void:#0B0C10; --ss-charcoal:#12141A; --ss-slate:#1A1D26; --ss-indigo:#0F1A2E;
+  --ss-gold:#D4AF37; --ss-gold-light:#E5C158; --ss-ivory:#F6F4EE; --ss-muted:#B0B7C3;
+  --ss-gold-soft:rgba(212,175,55,0.22); --ss-gold-strong:rgba(212,175,55,0.55);
+}
+html{scroll-behavior:smooth}
+body{background:var(--ss-void);color:var(--ss-ivory);font-family:'Outfit','Noto Sans Devanagari',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto}
+
+.font-serif-en{font-family:'Cinzel',serif;letter-spacing:.02em}
+.font-devanagari{font-family:'Rozha One','Tiro Devanagari Hindi','Noto Sans Devanagari',serif}
+.font-mantra{font-family:'Tiro Devanagari Hindi','Rozha One',serif;letter-spacing:.04em}
+
+.text-gold{color:var(--ss-gold)} .text-gold-light{color:var(--ss-gold-light)}
+.text-ivory{color:var(--ss-ivory)} .text-muted-ivory{color:var(--ss-muted)}
+.bg-void{background:var(--ss-void)} .bg-charcoal{background:var(--ss-charcoal)}
+.bg-slate-t{background:var(--ss-slate)} .bg-indigo-t{background:var(--ss-indigo)}
+.border-gold-soft{border-color:var(--ss-gold-soft)} .border-gold-strong{border-color:var(--ss-gold-strong)}
+
+/* ─────────── Layout helpers ─────────── */
+.ss-container{max-width:1400px;margin:0 auto;padding:0 24px}
+@media (min-width:1024px){.ss-container{padding:0 40px}}
+.divider-gold{height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.65),transparent)}
+.gold-underline{background:linear-gradient(90deg,#D4AF37,transparent);height:2px;width:64px}
+.mandala-bg{background-image:radial-gradient(circle at 50% 50%,rgba(212,175,55,.06) 0%,transparent 60%),radial-gradient(circle at 20% 80%,rgba(30,58,95,.15) 0%,transparent 50%)}
+
+/* ─────────── Buttons ─────────── */
+.btn-primary-gold,.wp-block-button.is-style-gold-primary .wp-block-button__link{
+  background:#D4AF37;color:#0B0C10 !important;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:12px 26px;border-radius:999px;transition:transform .2s ease,background .2s,box-shadow .2s;
+  display:inline-flex;align-items:center;gap:10px;font-size:12px;border:0
+}
+.btn-primary-gold:hover,.wp-block-button.is-style-gold-primary .wp-block-button__link:hover{background:#E5C158;box-shadow:0 8px 30px rgba(212,175,55,.25);transform:translateY(-1px)}
+
+.btn-outline-gold,.wp-block-button.is-style-gold-outline .wp-block-button__link{
+  background:transparent;color:#F6F4EE !important;border:1px solid rgba(212,175,55,.45);
+  padding:12px 26px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase;font-weight:500;font-size:12px;
+  display:inline-flex;align-items:center;gap:10px;transition:all .2s
+}
+.btn-outline-gold:hover,.wp-block-button.is-style-gold-outline .wp-block-button__link:hover{border-color:#D4AF37;background:rgba(212,175,55,.08)}
+
+/* ─────────── Cards ─────────── */
+.card-sacred{background:rgba(18,20,26,.9);border:1px solid var(--ss-gold-soft);border-radius:16px;transition:.3s;padding:24px}
+.card-sacred:hover{border-color:var(--ss-gold-strong);box-shadow:0 12px 40px rgba(212,175,55,.08);transform:translateY(-2px)}
+.gold-glow{box-shadow:0 0 60px rgba(212,175,55,.12)}
+
+/* ─────────── Live dot ─────────── */
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#e5352b;box-shadow:0 0 0 0 rgba(229,53,43,.6);animation:pulse 1.8s infinite;margin-right:6px}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(229,53,43,.6)}70%{box-shadow:0 0 0 12px rgba(229,53,43,0)}100%{box-shadow:0 0 0 0 rgba(229,53,43,0)}}
+.slow-rotate{animation:slowspin 90s linear infinite} @keyframes slowspin{to{transform:rotate(360deg)}}
+.fade-up{animation:fadeUp .9s ease both} @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─────────── Header/Nav ─────────── */
+.ss-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px);background:rgba(11,12,16,.85);border-bottom:1px solid var(--ss-gold-soft)}
+.ss-header-inner{display:flex;align-items:center;justify-content:space-between;height:80px}
+.ss-logo{display:flex;align-items:center;gap:12px}
+.ss-logo-emblem{position:relative;width:44px;height:44px;border-radius:50%;border:1px solid var(--ss-gold-strong);display:flex;align-items:center;justify-content:center;color:#D4AF37;font-family:'Cinzel',serif;font-size:18px}
+.ss-logo-text-hi{font-family:'Rozha One',serif;color:#D4AF37;font-size:18px;line-height:1.1}
+.ss-logo-text-en{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.32em;color:var(--ss-muted)}
+.ss-nav{display:none;gap:22px;align-items:center}
+@media(min-width:1280px){.ss-nav{display:flex}}
+.ss-nav a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,244,238,.8)}
+.ss-nav a:hover,.ss-nav a.current-menu-item{color:#D4AF37}
+.ss-header-cta{display:flex;align-items:center;gap:10px}
+.ss-lang{display:none;padding:4px;border:1px solid var(--ss-gold-soft);border-radius:999px}
+@media(min-width:768px){.ss-lang{display:inline-flex;gap:4px}}
+.ss-lang button{padding:6px 12px;border-radius:999px;font-size:12px;background:transparent;color:rgba(246,244,238,.8);border:0;cursor:pointer}
+.ss-lang button.active{background:#D4AF37;color:#0B0C10}
+.ss-lang .hi{font-family:'Noto Sans Devanagari',sans-serif}
+.ss-lang .en{font-family:'Cinzel',serif;letter-spacing:.1em}
+.ss-hamburger{background:transparent;border:0;color:#D4AF37;padding:8px;cursor:pointer;display:inline-flex}
+@media(min-width:1280px){.ss-hamburger{display:none}}
+.ss-mobile-panel{display:none;padding:12px 0 24px;border-top:1px solid var(--ss-gold-soft);margin-top:8px}
+.ss-mobile-panel.open{display:block}
+.ss-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ss-mobile-grid a{padding:8px 0;color:rgba(246,244,238,.85);font-size:14px}
+
+/* ─────────── Hero ─────────── */
+.ss-hero{position:relative;min-height:92vh;overflow:hidden}
+.ss-hero .bg{position:absolute;inset:0}
+.ss-hero .bg img{width:100%;height:100%;object-fit:cover;opacity:.6}
+.ss-hero .fade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,12,16,.7),rgba(11,12,16,.4),rgba(11,12,16,1))}
+.ss-hero-content{position:relative;padding:96px 0 128px}
+.ss-hero .mantra{font-family:'Tiro Devanagari Hindi',serif;color:#E5C158;font-size:18px;letter-spacing:.06em;margin-bottom:32px}
+.ss-hero .eyebrow{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#D4AF37;margin-bottom:24px}
+.ss-hero h1{font-family:'Cinzel',serif;font-size:clamp(48px,7vw,88px);line-height:1.05;color:#F6F4EE;margin:0}
+.ss-hero .subtitle-hi{font-family:'Rozha One',serif;color:#D4AF37;font-size:clamp(22px,3vw,32px);margin-top:32px}
+.ss-hero .subtitle-en{font-family:'Cinzel',serif;font-style:italic;color:var(--ss-muted);margin-top:12px;font-size:18px}
+.ss-hero .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px}
+
+/* ─────────── Sections ─────────── */
+.ss-section{padding:96px 0}
+.ss-section-eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#D4AF37;margin-bottom:16px}
+.ss-section h2{font-family:'Cinzel',serif;font-size:clamp(28px,4vw,48px);color:#F6F4EE;margin:0}
+.ss-section h2.hi{font-family:'Rozha One',serif}
+
+.ss-grid-3{display:grid;gap:24px;grid-template-columns:1fr}
+@media(min-width:640px){.ss-grid-3{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.ss-grid-3{grid-template-columns:repeat(3,1fr)}}
+
+.ss-grid-2{display:grid;gap:40px;grid-template-columns:1fr}
+@media(min-width:1024px){.ss-grid-2{grid-template-columns:1fr 1fr;align-items:center}}
+
+/* Aarti list */
+.aarti-list{list-style:none;margin:0;padding:0}
+.aarti-list li{display:flex;justify-content:space-between;border-bottom:1px solid var(--ss-gold-soft);padding:12px 0}
+.aarti-list li .name{font-family:'Rozha One',serif;color:#F6F4EE}
+.aarti-list li .time{color:#D4AF37;font-family:'Cinzel',serif;font-size:14px}
+
+/* Footer */
+.ss-footer{background:var(--ss-void);border-top:1px solid var(--ss-gold-soft);margin-top:96px}
+.ss-footer-grid{display:grid;gap:48px;grid-template-columns:1fr;padding:64px 0}
+@media(min-width:768px){.ss-footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.ss-footer-grid{grid-template-columns:repeat(4,1fr)}}
+.ss-footer h4{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#D4AF37;margin:0 0 20px}
+.ss-footer ul{list-style:none;padding:0;margin:0}
+.ss-footer ul li{padding:4px 0}
+.ss-footer a:hover{color:#D4AF37}
+.ss-footer .socials{display:flex;gap:12px;margin-top:20px}
+.ss-footer .socials a{display:inline-flex;padding:8px;border:1px solid var(--ss-gold-soft);border-radius:999px}
+.ss-footer .socials a:hover{border-color:var(--ss-gold-strong);color:#D4AF37}
+.ss-footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding:24px 0;font-size:12px;color:var(--ss-muted);border-top:1px solid var(--ss-gold-soft)}
+
+/* Live badge */
+.live-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(212,175,55,.4);border-radius:999px;padding:6px 14px;background:rgba(11,12,16,.6);color:#E5C158;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+
+/* Video */
+.video-frame{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--ss-gold-soft);background:var(--ss-void)}
+.video-frame iframe,.video-frame video{width:100%;height:100%;border:0}
+.video-frame .live-badge{position:absolute;top:16px;left:16px}
+
+/* Sticky mobile actions */
+.mobile-actions{position:fixed;bottom:0;left:0;right:0;z-index:40;background:rgba(11,12,16,.95);border-top:1px solid var(--ss-gold-soft);display:grid;grid-template-columns:repeat(5,1fr);padding:8px;gap:4px}
+@media(min-width:768px){.mobile-actions{display:none}}
+.mobile-actions a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 2px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ss-ivory);text-align:center}
+.mobile-actions a svg{width:18px;height:18px;color:#D4AF37}
+
+/* Post content */
+.entry-content{max-width:800px;margin:0 auto;padding:64px 24px;line-height:1.9;font-size:18px;color:rgba(246,244,238,.85)}
+.entry-content h1,.entry-content h2,.entry-content h3{color:#F6F4EE;font-family:'Cinzel',serif}
+.entry-content a{color:#D4AF37;text-decoration:underline}
+.entry-content img{border-radius:12px;border:1px solid var(--ss-gold-soft);margin:24px 0}
+
+/* Forms */
+.ss-input,.ss-textarea{width:100%;background:var(--ss-charcoal);border:1px solid var(--ss-gold-soft);border-radius:8px;padding:12px 16px;color:var(--ss-ivory);font-family:inherit;font-size:14px}
+.ss-input:focus,.ss-textarea:focus{outline:none;border-color:var(--ss-gold-strong)}

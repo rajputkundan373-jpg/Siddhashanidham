@@ -1,0 +1,54 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main"} -->
+<main class="wp-block-group">
+
+  <!-- wp:cover {"customOverlayColor":"#0B0C10","dimRatio":50,"minHeight":45,"minHeightUnit":"vh","align":"full","style":{"spacing":{"padding":{"top":"96px","bottom":"48px","left":"24px","right":"24px"}}}} -->
+  <div class="wp-block-cover alignfull" style="min-height:45vh;padding:96px 24px 48px">
+    <span class="wp-block-cover__background has-background-dim-50" style="background-color:#0B0C10"></span>
+    <!-- wp:post-featured-image {"style":{"color":{"duotone":"unset"}}} /-->
+    <div class="wp-block-cover__inner-container">
+      <!-- wp:group {"layout":{"type":"constrained","contentSize":"1000px"}} -->
+      <div class="wp-block-group">
+        <!-- wp:post-terms {"term":"category","style":{"typography":{"letterSpacing":"0.3em","textTransform":"uppercase","fontSize":"12px"},"color":{"text":"#D4AF37"}}} /-->
+        <!-- wp:post-title {"level":1,"style":{"typography":{"fontFamily":"'Cinzel', serif","fontSize":"clamp(2rem,5vw,3.5rem)","lineHeight":"1.15"},"color":{"text":"#F6F4EE"}}} /-->
+        <!-- wp:post-date {"style":{"color":{"text":"#B0B7C3"}}} /-->
+      </div>
+      <!-- /wp:group -->
+    </div>
+  </div>
+  <!-- /wp:cover -->
+
+  <!-- wp:post-content {"align":"wide","layout":{"type":"constrained","contentSize":"800px"}} /-->
+
+  <!-- wp:group {"layout":{"type":"constrained","contentSize":"800px"},"style":{"spacing":{"padding":{"left":"24px","right":"24px","bottom":"64px"}}}} -->
+  <div class="wp-block-group">
+    <!-- wp:comments -->
+    <div class="wp-block-comments">
+      <!-- wp:comments-title /-->
+      <!-- wp:comment-template -->
+        <!-- wp:columns -->
+        <div class="wp-block-columns">
+          <!-- wp:column {"width":"40px"} -->
+          <div class="wp-block-column" style="flex-basis:40px"><!-- wp:avatar {"size":40} /--></div>
+          <!-- /wp:column -->
+          <!-- wp:column -->
+          <div class="wp-block-column">
+            <!-- wp:comment-author-name /-->
+            <!-- wp:comment-date /-->
+            <!-- wp:comment-content /-->
+          </div>
+          <!-- /wp:column -->
+        </div>
+        <!-- /wp:columns -->
+      <!-- /wp:comment-template -->
+      <!-- wp:post-comments-form /-->
+    </div>
+    <!-- /wp:comments -->
+  </div>
+  <!-- /wp:group -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
