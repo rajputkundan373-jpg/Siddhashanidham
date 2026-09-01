@@ -4,9 +4,18 @@
  * Slug: siddh-sannidham/journal-page
  * Categories: siddh-sannidham
  */
-$posts = get_posts( array( 'numberposts' => 12 ) );
-$featured = $posts[0] ?? null;
-$rest = array_slice( $posts, 1 );
+$active_cat = isset( $_GET['cat'] ) ? sanitize_text_field( wp_unslash( $_GET['cat'] ) ) : '';
+$active_q   = isset( $_GET['q'] )   ? sanitize_text_field( wp_unslash( $_GET['q'] ) )   : '';
+
+$q_args = array( 'numberposts' => 24, 's' => $active_q );
+if ( $active_cat ) {
+    $term = get_term_by( 'name', $active_cat, 'category' );
+    if ( $term ) $q_args['category'] = $term->term_id;
+}
+$posts = get_posts( $q_args );
+$featured = ( ! $active_cat && ! $active_q ) ? ( $posts[0] ?? null ) : null;
+$rest = $featured ? array_slice( $posts, 1 ) : $posts;
+$all_cats = get_terms( array( 'taxonomy' => 'category', 'hide_empty' => false ) );
 ?>
 <!-- wp:html -->
 <main>
@@ -22,6 +31,16 @@ $rest = array_slice( $posts, 1 );
 
 <section class="ss-section">
   <div class="ss-container">
+    <form method="get" style="max-width:720px;margin-bottom:32px">
+      <input class="ss-input" style="border-radius:999px;padding:14px 24px" type="text" name="q" value="<?php echo esc_attr( $active_q ); ?>" placeholder="लेख खोजें... / Search articles...">
+    </form>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px">
+      <a href="<?php echo esc_url( home_url( '/journal' ) ); ?>" class="btn-outline-gold" style="<?php echo $active_cat ? '' : 'background:#D4AF37;color:#0B0C10;border-color:transparent'; ?>;font-size:11px;padding:8px 16px"><span data-hi="सभी" data-en="All">सभी</span></a>
+      <?php foreach ( $all_cats as $t ) : $is_active = $active_cat === $t->name; ?>
+        <a href="<?php echo esc_url( home_url( '/journal?cat=' . rawurlencode( $t->name ) ) ); ?>" class="btn-outline-gold" style="<?php echo $is_active ? 'background:#D4AF37;color:#0B0C10;border-color:transparent' : ''; ?>;font-size:11px;padding:8px 16px"><?php echo esc_html( $t->name ); ?></a>
+      <?php endforeach; ?>
+    </div>
+
     <?php if ( $featured ) : $img = get_the_post_thumbnail_url( $featured->ID, 'large' ); ?>
       <a href="<?php echo esc_url( get_permalink( $featured ) ); ?>" class="card-sacred" style="display:grid;grid-template-columns:1fr;padding:0;overflow:hidden;margin-bottom:64px" id="ss-featured">
         <?php if ( $img ) : ?><img src="<?php echo esc_url( $img ); ?>" alt="" style="width:100%;height:100%;object-fit:cover;min-height:280px"><?php endif; ?>
@@ -32,6 +51,11 @@ $rest = array_slice( $posts, 1 );
         </div>
       </a>
     <?php endif; ?>
+
+    <?php if ( empty( $rest ) && ! $featured ) : ?>
+      <p class="text-muted-ivory"><span data-hi="कोई लेख नहीं मिला।" data-en="No articles found.">कोई लेख नहीं मिला।</span></p>
+    <?php endif; ?>
+
     <div class="ss-grid-3">
       <?php foreach ( $rest as $p ) : $img = get_the_post_thumbnail_url( $p->ID, 'large' ); ?>
         <a href="<?php echo esc_url( get_permalink( $p ) ); ?>" class="card-sacred" style="display:block;padding:0;overflow:hidden">
