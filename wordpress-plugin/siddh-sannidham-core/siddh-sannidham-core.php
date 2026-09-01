@@ -2,14 +2,16 @@
 /**
  * Plugin Name: Siddh Sannidham Core
  * Description: Custom post types (Aarti, Events, Bhandara, Seva, Gallery, Testimonials), temple settings, page auto-creation, and donation intent capture for the Siddh Sannidham WordPress theme. Content lives in the DB and survives theme changes.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Siddh Sannidham
  * License: GPL-2.0-or-later
  * Text Domain: siddh-sannidham-core
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'SIDDH_CORE_VERSION', '1.1.0' );
+define( 'SIDDH_CORE_VERSION', '1.2.0' );
+
+require_once __DIR__ . '/home-content.php';
 
 /* ─────────── Register Custom Post Types ─────────── */
 add_action( 'init', function () {
@@ -285,16 +287,22 @@ function ss_ensure_pages( $set_homepage = true ) {
         ) );
         if ( $id && ! is_wp_error( $id ) ) $created++;
     }
-    // Home page
+    // Home page — always seed with editable Gutenberg content if empty
     $home = get_page_by_path( 'home' );
     if ( ! $home ) {
         $home_id = wp_insert_post( array(
-            'post_type' => 'page', 'post_status' => 'publish',
-            'post_title' => 'Home', 'post_name' => 'home',
-            'post_content' => '',
+            'post_type'    => 'page',
+            'post_status'  => 'publish',
+            'post_title'   => 'Home',
+            'post_name'    => 'home',
+            'post_content' => function_exists( 'siddh_home_page_content' ) ? siddh_home_page_content() : '',
         ) );
     } else {
         $home_id = $home->ID;
+        // If the home page has empty or trivial content, seed it with the editable block markup
+        if ( function_exists( 'siddh_home_page_content' ) && strlen( trim( wp_strip_all_tags( $home->post_content ) ) ) < 20 ) {
+            wp_update_post( array( 'ID' => $home_id, 'post_content' => siddh_home_page_content() ) );
+        }
     }
     if ( $set_homepage && $home_id ) {
         update_option( 'show_on_front', 'page' );
@@ -309,12 +317,25 @@ function ss_setup_pages_screen() {
         $created = ss_ensure_pages( true );
         echo '<div class="notice notice-success"><p>' . esc_html( $created ) . ' pages created / verified. Home page set as static front page.</p></div>';
     }
+    if ( isset( $_POST['ss_reseed_home'] ) && check_admin_referer( 'ss_reseed_home' ) && function_exists( 'siddh_home_page_content' ) ) {
+        $home = get_page_by_path( 'home' );
+        if ( $home ) {
+            wp_update_post( array( 'ID' => $home->ID, 'post_content' => siddh_home_page_content() ) );
+            echo '<div class="notice notice-success"><p>Home page content reseeded with editable Gutenberg blocks.</p></div>';
+        }
+    }
     echo '<div class="wrap"><h1>Siddh Sannidham — Setup Pages</h1>';
-    echo '<p>This will create the standard Siddh Sannidham pages (About, Shani Dev, Darshan, Seva, Donate, Bhandara, Live Aarti, Events, Journal, Gallery, Visit Us, Contact, Experiences, Transparency) with the correct templates, and set the Home page as the static front page. Existing pages are not overwritten.</p>';
-    echo '<form method="post">';
+    echo '<p>Create the standard Siddh Sannidham pages with the correct templates, and set the Home page as the static front page. Existing pages are not overwritten.</p>';
+    echo '<form method="post" style="display:inline-block;margin-right:16px">';
     wp_nonce_field( 'ss_setup_pages' );
     echo '<button type="submit" name="ss_setup_pages" class="button button-primary">Create / Verify Pages</button>';
-    echo '</form></div>';
+    echo '</form>';
+    echo '<form method="post" style="display:inline-block" onsubmit="return confirm(\'This will REPLACE the Home page content with the default editable Gutenberg blocks. Any manual edits will be lost. Continue?\');">';
+    wp_nonce_field( 'ss_reseed_home' );
+    echo '<button type="submit" name="ss_reseed_home" class="button">Reseed Home Page Content</button>';
+    echo '</form>';
+    echo '<p style="margin-top:24px"><strong>Editing tip:</strong> after activation, open <em>WP Admin → Pages → Home → Edit</em> to visually edit every section (hero, intro, Shani Dev, Bhandara, donation, gallery, journal, etc.) as native Gutenberg blocks — text, images, buttons, gallery, and query loop are all editable.</p>';
+    echo '</div>';
 }
 
 /* Seed sensible defaults on activation */
