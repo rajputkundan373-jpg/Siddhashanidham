@@ -2,16 +2,17 @@
 /**
  * Plugin Name: Siddh Sannidham Core
  * Description: Custom post types (Aarti, Events, Bhandara, Seva, Gallery, Testimonials), temple settings, page auto-creation, and donation intent capture for the Siddh Sannidham WordPress theme. Content lives in the DB and survives theme changes.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: Siddh Sannidham
  * License: GPL-2.0-or-later
  * Text Domain: siddh-sannidham-core
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'SIDDH_CORE_VERSION', '1.2.0' );
+define( 'SIDDH_CORE_VERSION', '1.3.0' );
 
 require_once __DIR__ . '/home-content.php';
+require_once __DIR__ . '/page-contents.php';
 
 /* ─────────── Register Custom Post Types ─────────── */
 add_action( 'init', function () {
@@ -274,18 +275,25 @@ function ss_pages_config() {
 
 function ss_ensure_pages( $set_homepage = true ) {
     $created = 0;
+    $content_map = function_exists( 'siddh_page_content_map' ) ? siddh_page_content_map() : array();
     foreach ( ss_pages_config() as $slug => $meta ) {
         $existing = get_page_by_path( $slug );
-        if ( $existing ) continue;
-        $id = wp_insert_post( array(
-            'post_type'    => 'page',
-            'post_status'  => 'publish',
-            'post_title'   => $meta[0] . ' / ' . $meta[1],
-            'post_name'    => $slug,
-            'post_content' => '',
-            'meta_input'   => array( '_wp_page_template' => $meta[2] . '.html' ),
-        ) );
-        if ( $id && ! is_wp_error( $id ) ) $created++;
+        $seed_fn = isset( $content_map[ $slug ] ) ? $content_map[ $slug ] : '';
+        $seed_content = ( $seed_fn && function_exists( $seed_fn ) ) ? call_user_func( $seed_fn ) : '';
+        if ( ! $existing ) {
+            $id = wp_insert_post( array(
+                'post_type'    => 'page',
+                'post_status'  => 'publish',
+                'post_title'   => $meta[0] . ' / ' . $meta[1],
+                'post_name'    => $slug,
+                'post_content' => $seed_content,
+                'meta_input'   => array( '_wp_page_template' => $meta[2] . '.html' ),
+            ) );
+            if ( $id && ! is_wp_error( $id ) ) $created++;
+        } elseif ( $seed_content && strlen( trim( wp_strip_all_tags( $existing->post_content ) ) ) < 20 ) {
+            // Existing page is empty — safe to seed with editable blocks.
+            wp_update_post( array( 'ID' => $existing->ID, 'post_content' => $seed_content ) );
+        }
     }
     // Home page — always seed with editable Gutenberg content if empty
     $home = get_page_by_path( 'home' );
@@ -311,6 +319,19 @@ function ss_ensure_pages( $set_homepage = true ) {
     return $created;
 }
 
+/**
+ * Force-reseed a page's content with the editable block markup, overwriting existing content.
+ * Used from the Setup Pages screen.
+ */
+function ss_force_reseed_page( $slug ) {
+    if ( ! function_exists( 'siddh_page_content_map' ) ) return false;
+    $map = siddh_page_content_map();
+    if ( empty( $map[ $slug ] ) || ! function_exists( $map[ $slug ] ) ) return false;
+    $page = get_page_by_path( $slug );
+    if ( ! $page ) return false;
+    return (bool) wp_update_post( array( 'ID' => $page->ID, 'post_content' => call_user_func( $map[ $slug ] ) ) );
+}
+
 function ss_setup_pages_screen() {
     if ( ! current_user_can( 'manage_options' ) ) return;
     if ( isset( $_POST['ss_setup_pages'] ) && check_admin_referer( 'ss_setup_pages' ) ) {
@@ -324,17 +345,57 @@ function ss_setup_pages_screen() {
             echo '<div class="notice notice-success"><p>Home page content reseeded with editable Gutenberg blocks.</p></div>';
         }
     }
+    if ( isset( $_POST['ss_reseed_all'] ) && check_admin_referer( 'ss_reseed_all' ) && function_exists( 'siddh_page_content_map' ) ) {
+        $count = 0;
+        foreach ( siddh_page_content_map() as $slug => $fn ) {
+            if ( ss_force_reseed_page( $slug ) ) $count++;
+        }
+        echo '<div class="notice notice-success"><p>' . esc_html( $count ) . ' pages reseeded with editable Gutenberg blocks.</p></div>';
+    }
+    if ( isset( $_POST['ss_reseed_page'] ) && check_admin_referer( 'ss_reseed_page' ) ) {
+        $slug = sanitize_key( $_POST['ss_reseed_page'] );
+        if ( ss_force_reseed_page( $slug ) ) {
+            echo '<div class="notice notice-success"><p>Page “' . esc_html( $slug ) . '” reseeded.</p></div>';
+        } else {
+            echo '<div class="notice notice-error"><p>Could not reseed page “' . esc_html( $slug ) . '”.</p></div>';
+        }
+    }
     echo '<div class="wrap"><h1>Siddh Sannidham — Setup Pages</h1>';
-    echo '<p>Create the standard Siddh Sannidham pages with the correct templates, and set the Home page as the static front page. Existing pages are not overwritten.</p>';
+    echo '<p>Create the standard Siddh Sannidham pages with the correct templates, and set the Home page as the static front page. Existing pages with content are not overwritten.</p>';
     echo '<form method="post" style="display:inline-block;margin-right:16px">';
     wp_nonce_field( 'ss_setup_pages' );
     echo '<button type="submit" name="ss_setup_pages" class="button button-primary">Create / Verify Pages</button>';
     echo '</form>';
-    echo '<form method="post" style="display:inline-block" onsubmit="return confirm(\'This will REPLACE the Home page content with the default editable Gutenberg blocks. Any manual edits will be lost. Continue?\');">';
+    echo '<form method="post" style="display:inline-block;margin-right:16px" onsubmit="return confirm(\'This will REPLACE the Home page content with the default editable Gutenberg blocks. Any manual edits will be lost. Continue?\');">';
     wp_nonce_field( 'ss_reseed_home' );
-    echo '<button type="submit" name="ss_reseed_home" class="button">Reseed Home Page Content</button>';
+    echo '<button type="submit" name="ss_reseed_home" class="button">Reseed Home Page</button>';
     echo '</form>';
-    echo '<p style="margin-top:24px"><strong>Editing tip:</strong> after activation, open <em>WP Admin → Pages → Home → Edit</em> to visually edit every section (hero, intro, Shani Dev, Bhandara, donation, gallery, journal, etc.) as native Gutenberg blocks — text, images, buttons, gallery, and query loop are all editable.</p>';
+    echo '<form method="post" style="display:inline-block" onsubmit="return confirm(\'This will REPLACE the content of ALL Siddh Sannidham pages with the default editable Gutenberg blocks. Any manual edits will be lost. Continue?\');">';
+    wp_nonce_field( 'ss_reseed_all' );
+    echo '<button type="submit" name="ss_reseed_all" class="button button-secondary">Reseed ALL Pages</button>';
+    echo '</form>';
+
+    // Per-page reseed matrix
+    if ( function_exists( 'siddh_page_content_map' ) ) {
+        echo '<h2 style="margin-top:40px">Reseed individual pages</h2>';
+        echo '<p>Use these buttons if you want to reset a single page back to the default editable layout.</p>';
+        echo '<table class="widefat striped" style="max-width:720px"><thead><tr><th>Page</th><th>Slug</th><th>Status</th><th style="width:120px">Action</th></tr></thead><tbody>';
+        foreach ( siddh_page_content_map() as $slug => $fn ) {
+            $page = get_page_by_path( $slug );
+            $status = $page ? '<span style="color:#3a9d3a">Exists</span>' : '<span style="color:#a00">Missing</span>';
+            $edit_link = $page ? '<a href="' . esc_url( get_edit_post_link( $page->ID ) ) . '" style="margin-left:8px">Edit</a>' : '';
+            echo '<tr><td>' . esc_html( ucwords( str_replace( '-', ' ', $slug ) ) ) . '</td><td><code>' . esc_html( $slug ) . '</code></td><td>' . $status . $edit_link . '</td><td>';
+            if ( $page ) {
+                echo '<form method="post" onsubmit="return confirm(\'Replace content of page ' . esc_js( $slug ) . '?\');"><input type="hidden" name="ss_reseed_page" value="' . esc_attr( $slug ) . '">';
+                wp_nonce_field( 'ss_reseed_page' );
+                echo '<button type="submit" class="button button-small">Reseed</button></form>';
+            }
+            echo '</td></tr>';
+        }
+        echo '</tbody></table>';
+    }
+
+    echo '<p style="margin-top:24px"><strong>Editing tip:</strong> after activation, open <em>WP Admin → Pages → [Any Page] → Edit</em> to visually edit every section (hero, headings, buttons, images, gallery, columns) as native Gutenberg blocks. Dynamic sections (Seva, Events, Bhandara, Aartis) pull data from their own admin menus (Seva Options, Events, Bhandaras, Aartis).</p>';
     echo '</div>';
 }
 
