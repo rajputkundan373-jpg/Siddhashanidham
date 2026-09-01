@@ -1,0 +1,258 @@
+{
+  "brand_identity": {
+    "name_en": "Siddh Sannidham — Shani Dev Temple",
+    "name_hi": "सिद्ध सन्निधम् — शनि देव तीर्थ",
+    "tagline_en": "Ancient Heritage & Divine Solace on Etawa–Gwalior Road, Madhya Pradesh",
+    "tagline_hi": "इटावा-ग्वालियर मार्ग, मध्य प्रदेश का पावन सिद्ध शनि धाम",
+    "invocation_sanskrit": "ॐ नीलांजनसमाभासं रविपुत्रं यमाग्रजम् । छायामार्तण्डसम्भूतं तं नमामि शनैश्चरम् ॥",
+    "emotional_archetype": "ARCHETYPE 5: LUXURY & SACRED CINEMATIC (Ancient Indian Temple Heritage + Spiritual Institution)",
+    "design_philosophy": "Fusion of sacred Vedic geometry, Nagara architectural precision, deep celestial cosmos (Shani Dev's cosmic justice), antique brushed gold, and serene tactile warmth. Moving away from cheap temple clipart or cartoonish visuals into high-regard, reverent, cinematic spiritual authority."
+  },
+  "color_system": {
+    "theme_mode": "Rich Dark Spiritual Primary with Warm Sand / Ivory secondary accents",
+    "palette": {
+      "void_black": "#0B0C10",
+      "charcoal_granite": "#12141A",
+      "temple_slate": "#1A1D26",
+      "shani_indigo_deep": "#0F1A2E",
+      "shani_celestial_blue": "#1E3A5F",
+      "antique_gold": "#D4AF37",
+      "radiant_gold_hover": "#E5C158",
+      "deep_bronze": "#8C6D23",
+      "warm_ivory": "#F6F4EE",
+      "sacred_saffron_subtle": "#E07A2C",
+      "sandalwood_muted": "#B59E7D",
+      "border_gold_subtle": "rgba(212, 175, 55, 0.22)",
+      "border_gold_glow": "rgba(212, 175, 55, 0.45)",
+      "surface_glass_dark": "rgba(18, 20, 26, 0.78)",
+      "surface_glass_border": "rgba(255, 255, 255, 0.08)"
+    },
+    "contrast_rules": {
+      "dark_surface_text": "#F6F4EE (min 12:1 contrast against #0B0C10)",
+      "gold_accents_text": "#E5C158 (WCAG AAA against charcoal and deep indigo)",
+      "muted_caption_text": "#A1A8B8 (WCAG AA against #12141A)",
+      "button_primary": "bg-[#D4AF37] text-[#0B0C10] font-bold hover:bg-[#E5C158] hover:text-[#000000]",
+      "button_secondary": "border border-[#D4AF37]/40 text-[#F6F4EE] hover:border-[#D4AF37] hover:bg-[#D4AF37]/10"
+    }
+  },
+  "typography": {
+    "font_family_recommendations": {
+      "headings_en": "'Cinzel', 'Playfair Display', 'Cormorant Garamond', serif",
+      "headings_hi": "'Rozha One', 'Yatra One', 'Tiro Devanagari Hindi', 'Nirmala UI', serif",
+      "body_en": "'Outfit', 'Plus Jakarta Sans', 'IBM Plex Sans', sans-serif",
+      "body_hi": "'Noto Sans Devanagari', 'Mukta', sans-serif",
+      "mantra_sacred": "'Samarkan', 'Rozha One', 'Tiro Devanagari Hindi', serif",
+      "metrics_mono": "'JetBrains Mono', 'Cinzel Decorative', monospace"
+    },
+    "scale": {
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight",
+      "h3_card": "text-xl sm:text-2xl font-medium",
+      "h4_sub": "text-lg sm:text-xl font-normal",
+      "body_lg": "text-lg leading-relaxed text-[#D6D9E0]",
+      "body_base": "text-base leading-relaxed text-[#B0B7C3]",
+      "caption_sm": "text-xs uppercase tracking-[0.2em] text-[#D4AF37]"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing (2-3x typical density). Asymmetry and negative space to allow sacred artwork, architectural carvings, and Sanskrit mantras to command reverence.",
+    "grid_modes": {
+      "mode_a_tetris_marketing": "grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-8 lg:gap-10",
+      "mode_b_bento_darshan_info": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+      "masonry_gallery": "columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6"
+    },
+    "surface_treatment": {
+      "crystal_glass_nav": "backdrop-blur-2xl bg-[#0B0C10]/80 border-b border-[#D4AF37]/20 shadow-xl",
+      "card_sacred_container": "bg-[#12141A]/90 border border-[#D4AF37]/20 rounded-xl p-6 lg:p-8 hover:border-[#D4AF37]/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)]",
+      "gold_beam_highlight": "relative before:absolute before:-inset-px before:rounded-xl before:bg-gradient-to-r before:from-[#D4AF37]/40 before:via-transparent before:to-[#D4AF37]/20 before:-z-10",
+      "temple_shikhara_border": "border-t-2 border-b border-[#D4AF37]/30"
+    }
+  },
+  "image_urls": {
+    "hero_oil_lamp_aarti": {
+      "category": "Hero & Spiritual Atmosphere",
+      "url": "https://images.unsplash.com/photo-1775427528127-a66ce3bb2bcb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwzfHx0ZW1wbGUlMjBvaWwlMjBsYW1wJTIwYWFydGklMjBmbGFtZSUyMHNhY3JlZHxlbnwwfHx8fDE3ODgxOTgwNTB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Sacred tiered brass oil lamp with burning aarti flames in mystical atmosphere"
+    },
+    "temple_architecture_pillars": {
+      "category": "About Temple & Heritage Section",
+      "url": "https://images.unsplash.com/photo-1665003725647-3ae0f01140b1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjB0ZW1wbGUlMjBzdG9uZSUyMGNhcnZpbmclMjBoZXJpdGFnZXxlbnwwfHx8fDE3ODgxOTgwNTB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Ancient ornate stone sculpted temple corridor pillars reflecting architectural grandeur"
+    },
+    "temple_stepwell_geometry": {
+      "category": "Architecture & Darshan Experience",
+      "url": "https://images.unsplash.com/photo-1629735919597-fed920b5bd84?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjB0ZW1wbGUlMjBzdG9uZSUyMGNhcnZpbmclMjBoZXJpdGFnZXxlbnwwfHx8fDE3ODgxOTgwNTB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Intricate geometric stone carved dome stepwell structure demonstrating timeless sacred geometry"
+    },
+    "temple_stone_carving_shikhara": {
+      "category": "Temple History & Mandir Sanctum",
+      "url": "https://images.unsplash.com/photo-1672215060701-c4207cbdc430?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwzfHxpbmRpYW4lMjB0ZW1wbGUlMjBzdG9uZSUyMGNhcnZpbmclMjBoZXJpdGFnZXxlbnwwfHx8fDE3ODgxOTgwNTB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Finely detailed Nagara style temple shikhara sandstone carvings with divine motifs"
+    },
+    "temple_gopuram_sculptures": {
+      "category": "Gallery & Heritage",
+      "url": "https://images.unsplash.com/photo-1619239632374-9e6651c2b7bb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHw0fHxpbmRpYW4lMjB0ZW1wbGUlMjBzdG9uZSUyMGNhcnZpbmclMjBoZXJpdGFnZXxlbnwwfHx8fDE3ODgxOTgwNTB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Majestic multi-tiered temple shikhara reaching towards the sky"
+    },
+    "diya_sacred_flame_single": {
+      "category": "Seva & Daily Aarti Timings",
+      "url": "https://images.unsplash.com/photo-1701093919822-899072e02c41?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwyfHx0ZW1wbGUlMjBvaWwlMjBsYW1wJTIwYWFydGklMjBmbGFtZSUyMHNhY3JlZHxlbnwwfHx8fDE3ODgxOTgwNTB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Traditional clay diya with pure glowing flame resting on sacred rangoli pattern"
+    },
+    "marigold_pooja_flowers": {
+      "category": "Bhandara & Seva Offerings",
+      "url": "https://images.unsplash.com/photo-1596704017254-9b121068fb31?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwxfHxtYXJpZ29sZCUyMGZsb3dlciUyMGhpbmR1JTIwcG9vamF8ZW58MHx8fHwxNzg4MTk4MTU2fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Vibrant sacred yellow and orange marigold garlands for temple rituals and pooja offerings"
+    }
+  },
+  "pages_and_components_blueprint": {
+    "navigation_and_header": {
+      "features": [
+        "Brand Logo: 'सिद्ध सन्निधम् SIDDH SANNIDHAM' with gold trishul/mandala emblem",
+        "Key Links: Home, About, Shani Dev, Darshan & Aarti, Seva & Offerings, Donate, Bhandara, Live Darshan, Events, Journal, Gallery, Visit Us, Contact",
+        "Action Buttons: 'Live Darshan (लाइव दर्शन)' with pulsing red/gold indicator & 'Donate / दान करें' gold CTA",
+        "Bilingual Switcher: Hindi (हिन्दी) | English (EN) toggle storing active state",
+        "Mobile Drawer: Full-height sliding menu with gold borders, Sanskrit shloka header, and quick contact action"
+      ]
+    },
+    "home_page": {
+      "hero_section": "Full viewport cinematic scene, live chanting audio ambient toggle (soft bell/om drone), Sanskrit invocation in gold calligraphic text, live temple status badge ('Mandir Open - Sandhya Aarti at 07:15 PM'), CTAs ('Book E-Pooja', 'Live Darshan', 'Today's Bhandara')",
+      "today_at_temple_card": "Interactive live status card displaying: Sunrise/Sunset, Rahu Kaal, Shani Sade Sati/Dhaiya remedy advisory for the day, Daily Aarti timings, Bhandara menu, and Live Devotee count",
+      "shani_dev_philosophy_section": "Educational debunking of fear: Shani Dev as 'Karma Phaldata' (Lord of Cosmic Justice & Benevolence) rather than wrath. Interactive slider explaining Shani's 7 sacred blessings.",
+      "live_darshan_embed": "YouTube Live / Facebook stream player placeholder with simulated live chat, virtual bell ring interaction (audio/visual chime), and virtual diya offering button",
+      "why_devotees_visit": "Asymmetric bento grid of 4 core pillars: 1. Siddh Vigraha Prana Pratishtha 2. Complete Shani Shanti Vedic Rituals 3. Nitya Mahaprasad Bhandara 4. Peaceful Serene Sanctum",
+      "seva_and_donation_tier_preview": "Cards for Telabhishekam (तेल अभिषेक), Shani Shanti Homa, Shani Gayatri Jaap, and Annadanam sponsorship with quick UPI/card booking trigger",
+      "aarti_schedule_timeline": "Morning Mangala Aarti (05:30 AM), Bhog Aarti (12:00 PM), Sandhya Aarti (07:15 PM), Shayan Aarti (09:30 PM) with reminder alerts"
+    },
+    "about_page": {
+      "sections": [
+        "Siddh Sannidham Origin Story on Etawa-Gwalior Highway",
+        "The Sacred Vigraha and Sthapana Lore",
+        "Architectural Vision: Sandstone nagara shikhara, vast sabha mandap, and eco-friendly pilgrimage premises",
+        "Trust & Governance: Board of Trustees, Vedic Acharyas, and Philanthropic vision",
+        "Interactive Historical Timeline from foundation to modern pilgrimage status"
+      ]
+    },
+    "shani_dev_knowledge_center": {
+      "sections": [
+        "Vedic Mythology: Surya Putra & Chhaya Nandan",
+        "Understanding Sade Sati (साढ़े साती) & Dhaiya (ढैया) with Interactive Sade Sati Calculator",
+        "Shani Mantras with Audio Player (Shani Gayatri, Shani Beej Mantra, Shani Chalisa)",
+        "Dos and Don'ts on Shanivar (Saturday Vrat Vidhi, Mustard oil offerings, Black sesame seeds)",
+        "Myths vs Truths FAQ Accordion"
+      ]
+    },
+    "darshan_page": {
+      "sections": [
+        "General Darshan Timings & Special Saturday Timings",
+        "VIP/Senior Citizen Special Darshan Booking System",
+        "Dress Code & Temple Etiquette Guide",
+        "Prasad Distribution Counters & Wheelchair Accessibility info",
+        "Crowd Predictor Gauge by Day & Hour"
+      ]
+    },
+    "seva_page": {
+      "sections": [
+        "Nitya Sevas (Daily): Mustard Oil Abhishekam, Pushpa Alankaram, Deepotsav",
+        "Vishesh Sevas (Saturday & Amavasya): Shani Shanti Mahayagya, Navagraha Homa, Rudrabhishek",
+        "Online Sankalp Form: Devotee Name, Gotra, Rashi, Nakshatra, Address for Prasad dispatch",
+        "Real-time Seva Slot Booking with confirmation receipt generator"
+      ]
+    },
+    "donate_page": {
+      "sections": [
+        "Sacred Donation Tiers: ₹501, ₹1,001, ₹2,501, ₹5,001, ₹11,001, ₹21,000, Custom Amount",
+        "Causes: Mandir Construction & Shikhara Gold leafing, Annakshetra (Bhandara), Gau Seva, Veda Pathshala, Medical Aid for Pilgrims",
+        "Dynamic UPI QR Code Generator with copyable VPA, Bank NEFT/RTGS details, and 80G Tax Exemption certification badge",
+        "Live Donor Wall of Gratitude (Devotees who sponsored this month)"
+      ]
+    },
+    "bhandara_page": {
+      "sections": [
+        "Nitya Annadanam (Daily Mahaprasad) Mission: 'No devotee leaves hungry'",
+        "Sponsor Full Day Bhandara (₹11,000) or Half Day (₹5,100) on birthdays/anniversaries/in memory of ancestors",
+        "Interactive Bhandara Calendar: View reserved dates and pick available slots",
+        "Bhandara Kitchen Hygiene & Sattvic preparation standards showcase"
+      ]
+    },
+    "live_aarti_page": {
+      "sections": [
+        "24x7 Sacred Live Stream from Garbhagriha (Sanctum Sanctorum)",
+        "Virtual Aarti Interaction: Click to ring brass temple bell, light digital diya, and offer virtual bilva/marigold petals",
+        "Live Prayer Wall: devotess post 'Jai Shani Dev' blessings and prayer requests in real time",
+        "Archive of previous Special Amavasya Maha Aartis"
+      ]
+    },
+    "events_calendar_page": {
+      "sections": [
+        "Upcoming Festivals: Shani Jayanti Mahotsav, Shani Amavasya, Navratri, Diwali Deepotsav",
+        "Interactive Monthly/List Filter",
+        "Event Detail Modal with Schedule, Registration, and Seva Booking Links"
+      ]
+    },
+    "journal_blog_page": {
+      "sections": [
+        "Categories: Shani Dev Tatva, Astrological Insights, Temple News, Spiritual Practices, Pilgrimage Guide",
+        "Featured Editorial Article with reading time & Hindi translation toggle",
+        "Devotee comment & sharing system"
+      ]
+    },
+    "gallery_and_video_page": {
+      "sections": [
+        "Photo Masonry with Filter Tabs (Mandir Architecture, Maha Aarti, Festivals, Bhandara, Sanctum)",
+        "High-res Lightbox with Sanskrit annotations",
+        "Video Section: Drone tour of Etawa-Gwalior Road complex, Vedic Chanting recordings, Documentary on Sthapana"
+      ]
+    },
+    "visit_us_and_planner": {
+      "sections": [
+        "Location: Etawa–Gwalior Road, Madhya Pradesh (with Interactive Map, GPS coordinates & Google Maps Route link)",
+        "How to Reach: Nearest Airport (Gwalior GWL - 65 km), Nearest Railway Station (Etawah / Gwalior), Roadways & Highway exits",
+        "Pilgrim Amenities: Dharamshala / Guest house booking, Cloak room, Safe Shoe deposit, Pure RO drinking water, Parking for 500+ vehicles",
+        "Nearby Pilgrimage Circuit: Gwalior Fort, Bateshwar Temples, Chambal Sanctuary guide"
+      ]
+    },
+    "contact_and_feedback": {
+      "sections": [
+        "Direct Helpline Phone Numbers & Official Email",
+        "Instant WhatsApp Support CTA with prefilled message",
+        "Feedback & Grievance form with tracking ID generation",
+        "Media & Panditji consultation inquiry"
+      ]
+    },
+    "transparency_page": {
+      "sections": [
+        "Audited Financial Reports summary & Fund allocation charts",
+        "Trust Registration Details, 80G Certificate download, Pan Card details",
+        "Code of Ethics and Pilgrim Welfare commitments"
+      ]
+    },
+    "testimonials_devotee_experiences": {
+      "sections": [
+        "Real Devotee Video & Written Miracles / Blessings after Shani Shanti Pooja",
+        "Submission Form for devotees to share their personal experience",
+        "Verification badge for authenticated pilgrims"
+      ]
+    },
+    "admin_panel": {
+      "sections": [
+        "Dashboard Metrics: Total Donations (UPI/Online), Daily Devotee count, Bhandara bookings, Pending Seva Sankalps",
+        "CMS Modules: Manage Events, Edit Aarti Timings, Publish Blog Articles, Upload Photos/Videos to Gallery, Manage Devotee Testimonials, Update 'Today at Temple' banner",
+        "Donation & Seva Ledger with export to CSV/Excel"
+      ]
+    }
+  },
+  "interactive_micro_interactions": {
+    "sacred_sound_effects": "Subtle temple bell chime on CTA click / virtual offering (with mute toggle)",
+    "diya_glow_animation": "Hovering on cards causes soft golden aura bleed (0 0 25px rgba(212, 175, 55, 0.25))",
+    "bilingual_instant_translation": "Context-based state switcher with zero reload for seamless Hindi/English experience",
+    "mandala_rotator": "Subtle 60s continuous slow CSS rotation for sacred geometry watermark backgrounds",
+    "virtual_prasad_calculator": "Custom estimator based on family members for Bhandara / Pooja quantities"
+  },
+  "universal_guidelines_for_main_agent": {
+    "test_id_requirement": "ALL interactive elements, buttons, forms, links, cards, switches, inputs MUST have clear kebab-case 'data-testid' attributes (e.g. data-testid='hero-live-darshan-button', data-testid='donation-tier-1001-button', data-testid='language-switch-hindi', data-testid='bhandara-sponsor-submit').",
+    "design_tone": "NEVER make this look like a cheap or neon cyber page. Use deep obsidian black, rich temple indigo, antique gold borders, warm sandalwood ivory, and authentic stone carvings.",
+    "bilingual_support": "Implement full English and Hindi text translations across all views so switching language immediately updates headings, mantras, and menu items.",
+    "admin_cms": "Include complete functional admin control panel with tabbed navigation to manage Timings, Today's Bulletin, Sevas, Donations, Events, Articles, and Gallery photos."
+  }
+}
