@@ -1,0 +1,17 @@
+{
+  "summary": "Static-file/packaging verification for WordPress theme bug fix (PHP-in-.html removal). All 12 required checks PASSED. No <?php in any .html file under theme; forbidden PHP function names absent from .html files; parts/header.html and parts/footer.html each contain exactly a single wp:pattern block reference; new patterns/site-header.php and patterns/site-footer.php exist with proper Title/Slug/Categories headers; php -l passes on every .php file in theme + plugin; theme ZIP has correct single-root structure with all required files; extracted ZIP contains no <?php in .html; plugin ZIP has valid Plugin Name header; all design tokens (colors, fonts, classes) preserved in style.css; template-part references for header/footer intact across templates/; all 12 Hindi menu labels + CTAs (लाइव दर्शन, दान करें) + language switch buttons + hamburger present in site-header.php. No running services touched.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Minor: spec asked for CTA English data-en values 'LIVE DARSHAN' and 'DONATE' (ALL CAPS). Actual values are Title Case ('Live Darshan', 'Donate'). Hindi values match. If uppercase is desired for visual consistency, either update the data-en attributes or rely on CSS text-transform: uppercase. Non-blocking."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "N/A"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Static-file WP theme packaging validated. Detailed per-check results: (1) grep '<?php' in *.html => empty PASS; (2) forbidden strings wp_nav_menu/esc_url/esc_html/esc_attr/siddh_default_menu_items in *.html => empty PASS; (3) parts/header.html == single wp:pattern ref PASS; (4) parts/footer.html == single wp:pattern ref PASS; (5) patterns/site-header.php + site-footer.php exist with Title/Slug/Categories: siddh-sannidham PASS; (6) php -l over all theme+plugin .php files => 0 errors PASS; (7) /app/siddh-sannidham-theme.zip contains all 9 required paths and single top-level folder 'siddh-sannidham/' PASS; (8) extracted ZIP: no <?php in any .html PASS; (9) /app/siddh-sannidham-core.zip has siddh-sannidham-core/siddh-sannidham-core.php with 'Plugin Name: Siddh Sannidham Core' header PASS; (10) style.css design tokens all present PASS; (11) templates/front-page.html has wp:template-part for header & footer; 23 templates in templates/ reference template-parts PASS; (12) All 12 Hindi labels + LIVE DARSHAN(as 'Live Darshan')/DONATE(as 'Donate') + data-lang hi/en + data-ss-hamburger present PASS.",
+  "rca of the issue": "Original bug: PHP code was placed inside .html block-theme template parts, which WordPress renders as literal text (block templates only accept block markup, not PHP). Fix applied by main agent: relocated all PHP into patterns/*.php files (patterns support PHP), and replaced parts/header.html + parts/footer.html with a single <!-- wp:pattern {slug:...} /--> reference. Verified via static filesystem inspection—no runtime WP available."
+}
