@@ -35,6 +35,29 @@ function siddh_enqueue() {
 }
 add_action( 'wp_enqueue_scripts', 'siddh_enqueue' );
 
+/* ───── Header/Footer Shortcodes (bulletproof rendering — works in every WP block-theme + caching setup) ───── */
+function siddh_render_header_shortcode() {
+    ob_start();
+    $file = get_template_directory() . '/patterns/site-header.php';
+    if ( file_exists( $file ) ) {
+        $args = array(); // pattern files may expect $args
+        include $file;
+    }
+    return ob_get_clean();
+}
+add_shortcode( 'siddh_header', 'siddh_render_header_shortcode' );
+
+function siddh_render_footer_shortcode() {
+    ob_start();
+    $file = get_template_directory() . '/patterns/site-footer.php';
+    if ( file_exists( $file ) ) {
+        $args = array();
+        include $file;
+    }
+    return ob_get_clean();
+}
+add_shortcode( 'siddh_footer', 'siddh_render_footer_shortcode' );
+
 /* ───── Block Styles ───── */
 function siddh_register_block_styles() {
     register_block_style( 'core/button', array( 'name' => 'gold-primary', 'label' => __( 'Gold Primary', 'siddh-sannidham' ) ) );

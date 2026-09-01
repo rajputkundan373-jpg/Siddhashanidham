@@ -1,0 +1,18 @@
+{
+  "summary": "Static-file/packaging verification of WordPress block theme shortcode-based header/footer fix. All 13 checks PASS. No <?php or forbidden PHP implementation strings in any .html file. parts/header.html and parts/footer.html each contain the single-line wp:shortcode block referencing [siddh_header]/[siddh_footer]. functions.php registers both shortcodes with add_shortcode() and defines callbacks using ob_start()+include+ob_get_clean(). patterns/site-header.php and site-footer.php are pure PHP includes (no block pattern header). All PHP files pass php -l. style.css Version=1.2.0. All design tokens (colors #0B0C10/#D4AF37/#F6F4EE, fonts Cinzel/Rozha One/Tiro/Outfit/Noto Sans Devanagari, classes ss-header/ss-nav/ss-lang/btn-primary-gold/btn-outline-gold/card-sacred/live-dot/mobile-actions) preserved. All 12 Hindi menu labels present in site-header.php together with data-lang hi/en buttons, /live-aarti and /donate links, and data-ss-hamburger toggle. Theme ZIP has correct single-root structure with all required files, and extracted contents show zero <?php in .html files. 23 templates reference template parts (>=20 required).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Shortcode-based rendering (ob_start + include + ob_get_clean) is the correct, version-agnostic mechanism for injecting PHP-rendered markup into block theme .html template parts, replacing the unreliable wp:pattern reference approach.",
+    "Pattern files intentionally omit the '/** Title: ... Slug: ... */' block pattern header — they are pure PHP includes, so they will not be auto-registered/duplicated as block patterns; correct for this design."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "N/A"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Static-file testing only for WordPress theme at /app/wordpress-theme/siddh-sannidham. No WordPress runtime. Verify via grep/php -l/unzip. Font is 'Noto Sans Devanagari' (Google Fonts name) — grep for 'Noto+Sans+Devanagari' or 'Noto Sans Devanagari', not 'Noto Devanagari'.",
+  "rca of the issue": "Previous iteration used <!-- wp:pattern {slug} /--> which depends on WP resolving pattern references at render time and can leak raw PHP when pattern registration/caching misbehaves. This iteration switched to wp:shortcode blocks + add_shortcode callbacks that ob_start/include/ob_get_clean the pattern PHP file — shortcodes execute deterministically in every WP version and caching config, eliminating raw PHP leakage."
+}

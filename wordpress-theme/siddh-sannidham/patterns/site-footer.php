@@ -1,10 +1,10 @@
 <?php
 /**
- * Title: Site Footer
- * Slug: siddh-sannidham/site-footer
- * Categories: siddh-sannidham
- * Inserter: false
+ * Site Footer — HTML renderer (used by [siddh_footer] shortcode).
+ * Pure PHP template loaded by the shortcode registered in functions.php.
  */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
 $phone     = function_exists( 'siddh_get_option' ) ? siddh_get_option( 'phone', '' ) : '';
 $email     = function_exists( 'siddh_get_option' ) ? siddh_get_option( 'email', '' ) : '';
 $maps_url  = function_exists( 'siddh_get_option' ) ? siddh_get_option( 'maps_url', 'https://maps.google.com/?q=Etawa+Gwalior+Road+Madhya+Pradesh' ) : 'https://maps.google.com/?q=Etawa+Gwalior+Road+Madhya+Pradesh';
@@ -25,7 +25,6 @@ $quick_links = array(
     array( '/contact',    'संपर्क',      'Contact' ),
 );
 ?>
-<!-- wp:html -->
 <footer class="ss-footer">
   <div class="divider-gold"></div>
   <div class="ss-container ss-footer-grid">
@@ -83,7 +82,6 @@ $quick_links = array(
   </div>
 </footer>
 
-<!-- Sticky mobile action bar -->
 <div class="mobile-actions" aria-label="Quick actions">
   <a href="<?php echo esc_url( home_url( '/live-aarti' ) ); ?>"><span class="live-dot"></span><span data-hi="लाइव" data-en="Live">लाइव</span></a>
   <a href="<?php echo esc_url( home_url( '/donate' ) ); ?>"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span data-hi="दान" data-en="Donate">दान</span></a>
@@ -91,4 +89,3 @@ $quick_links = array(
   <a href="<?php echo esc_url( $maps_url ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-hi="मार्ग" data-en="Directions">मार्ग</span></a>
   <a href="<?php echo esc_url( $wa_digits ? 'https://wa.me/' . $wa_digits : '#' ); ?>" <?php echo $wa_digits ? 'target="_blank" rel="noopener"' : ''; ?>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>WhatsApp</a>
 </div>
-<!-- /wp:html -->

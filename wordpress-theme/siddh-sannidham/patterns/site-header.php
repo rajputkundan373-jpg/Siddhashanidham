@@ -1,27 +1,28 @@
 <?php
 /**
- * Title: Site Header
- * Slug: siddh-sannidham/site-header
- * Categories: siddh-sannidham
- * Inserter: false
+ * Site Header — HTML renderer (used by [siddh_header] shortcode).
+ * This file contains NO block markup and NO pattern header — it is a pure PHP template
+ * loaded by the shortcode registered in functions.php. It never executes inside a .html
+ * block template part.
  */
-$home_url = esc_url( home_url( '/' ) );
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+$home_url   = esc_url( home_url( '/' ) );
 $menu_items = function_exists( 'siddh_default_menu_items' ) ? siddh_default_menu_items() : array(
-    array( '/', 'मुख्य', 'Home' ),
-    array( '/about', 'परिचय', 'About' ),
-    array( '/shani-dev', 'शनि देव', 'Shani Dev' ),
-    array( '/darshan', 'दर्शन', 'Darshan' ),
-    array( '/seva', 'सेवा', 'Seva' ),
-    array( '/bhandara', 'भंडारा', 'Bhandara' ),
-    array( '/live-aarti', 'लाइव आरती', 'Live Aarti' ),
-    array( '/events', 'आयोजन', 'Events' ),
-    array( '/journal', 'जर्नल', 'Journal' ),
-    array( '/gallery', 'गैलरी', 'Gallery' ),
-    array( '/visit-us', 'यात्रा', 'Visit Us' ),
-    array( '/contact', 'संपर्क', 'Contact' ),
+    array( '/',            'मुख्य',       'Home' ),
+    array( '/about',       'परिचय',       'About' ),
+    array( '/shani-dev',   'शनि देव',     'Shani Dev' ),
+    array( '/darshan',     'दर्शन',       'Darshan' ),
+    array( '/seva',        'सेवा',        'Seva' ),
+    array( '/bhandara',    'भंडारा',      'Bhandara' ),
+    array( '/live-aarti',  'लाइव आरती',  'Live Aarti' ),
+    array( '/events',      'आयोजन',       'Events' ),
+    array( '/journal',     'जर्नल',       'Journal' ),
+    array( '/gallery',     'गैलरी',       'Gallery' ),
+    array( '/visit-us',    'यात्रा',       'Visit Us' ),
+    array( '/contact',     'संपर्क',      'Contact' ),
 );
 ?>
-<!-- wp:html -->
 <header class="ss-header">
   <div class="ss-container ss-header-inner">
     <a class="ss-logo" href="<?php echo $home_url; ?>">
@@ -70,4 +71,3 @@ $menu_items = function_exists( 'siddh_default_menu_items' ) ? siddh_default_menu
   </div>
 </header>
 <style>@media(min-width:768px){[data-desktop-cta]{display:inline-flex !important}}</style>
-<!-- /wp:html -->
