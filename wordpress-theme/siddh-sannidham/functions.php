@@ -66,6 +66,9 @@ function siddh_temple_hours() {
 }
 
 function siddh_is_temple_open() {
+    $override = siddh_get_option( 'status_override', '' );
+    if ( $override === 'open' ) return true;
+    if ( $override === 'closed' ) return false;
     $tz = new DateTimeZone( 'Asia/Kolkata' );
     $now = new DateTime( 'now', $tz );
     $h = siddh_temple_hours();
@@ -75,6 +78,16 @@ function siddh_is_temple_open() {
     $open->setDate( (int)$now->format('Y'), (int)$now->format('m'), (int)$now->format('d') );
     $close->setDate( (int)$now->format('Y'), (int)$now->format('m'), (int)$now->format('d') );
     return ( $now >= $open && $now <= $close );
+}
+
+function siddh_donation_tiers() {
+    $defaults = array( 501, 1001, 2501, 5001, 11001 );
+    $out = array();
+    for ( $i = 1; $i <= 5; $i++ ) {
+        $v = (int) siddh_get_option( 'donation_tier_' . $i, $defaults[ $i - 1 ] );
+        if ( $v > 0 ) $out[] = $v;
+    }
+    return $out ?: $defaults;
 }
 
 function siddh_live_darshan() {

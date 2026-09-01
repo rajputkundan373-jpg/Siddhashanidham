@@ -1,2 +1,3 @@
 cron=3.0pl1-162
+imagemagick=8:6.9.11.60+dfsg-1.6+deb12u13
 php-cli=2:8.2+93

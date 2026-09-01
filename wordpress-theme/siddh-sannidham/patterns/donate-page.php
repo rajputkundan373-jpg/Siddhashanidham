@@ -9,7 +9,7 @@ $bank_name    = siddh_get_option( 'bank_name', '' );
 $bank_holder  = siddh_get_option( 'bank_holder', '' );
 $bank_account = siddh_get_option( 'bank_account', '' );
 $bank_ifsc    = siddh_get_option( 'bank_ifsc', '' );
-$tiers = array( 501, 1001, 2501, 5001, 11001 );
+$tiers = function_exists( 'siddh_donation_tiers' ) ? siddh_donation_tiers() : array( 501, 1001, 2501, 5001, 11001 );
 $purposes = array( 'सामान्य मंदिर सेवा' => 'General Temple Seva', 'भंडारा सेवा' => 'Bhandara Seva', 'अन्नदान' => 'Annadan', 'विशेष पूजा' => 'Special Puja', 'मंदिर विकास' => 'Temple Development', 'अन्य सेवा' => 'Other Seva' );
 ?>
 <!-- wp:html -->

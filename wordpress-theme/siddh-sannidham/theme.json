@@ -62,7 +62,20 @@
     { "name": "footer", "title": "Footer", "area": "footer" }
   ],
   "customTemplates": [
-    { "name": "page-donate", "title": "Donate", "postTypes": ["page"] },
-    { "name": "page-live-darshan", "title": "Live Darshan", "postTypes": ["page"] }
+    { "name": "page-about",        "title": "About",             "postTypes": ["page"] },
+    { "name": "page-shani-dev",    "title": "Shani Dev",         "postTypes": ["page"] },
+    { "name": "page-darshan",      "title": "Darshan",           "postTypes": ["page"] },
+    { "name": "page-seva",         "title": "Seva",              "postTypes": ["page"] },
+    { "name": "page-donate",       "title": "Donate",            "postTypes": ["page"] },
+    { "name": "page-bhandara",     "title": "Bhandara",          "postTypes": ["page"] },
+    { "name": "page-live-darshan", "title": "Live Darshan",      "postTypes": ["page"] },
+    { "name": "page-live-aarti",   "title": "Live Aarti",        "postTypes": ["page"] },
+    { "name": "page-events",       "title": "Events",            "postTypes": ["page"] },
+    { "name": "page-journal",      "title": "Journal",           "postTypes": ["page"] },
+    { "name": "page-gallery",      "title": "Gallery",           "postTypes": ["page"] },
+    { "name": "page-visit-us",     "title": "Visit Us",          "postTypes": ["page"] },
+    { "name": "page-contact",      "title": "Contact",           "postTypes": ["page"] },
+    { "name": "page-experiences",  "title": "Devotee Experiences","postTypes": ["page"] },
+    { "name": "page-transparency", "title": "Transparency",      "postTypes": ["page"] }
   ]
 }
